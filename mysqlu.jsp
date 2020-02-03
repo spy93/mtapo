@@ -16,51 +16,18 @@
         <title>SGBD</title>
     </head>
     <body>
-    <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
-         url = "jdbc:mysql://127.0.0.1/testdb"
-         user = "mada"  password = "madaroot"/>
-        
-         <% 
-            try {
-			 Connection con;
-
-			// The JDBC Connector Class.
-			String dbClassName = "com.mysql.jdbc.Driver";
-			String CONNECTION = "jdbc:mysql://127.0.0.1/mtapo";
-			
-			Class.forName(dbClassName).newInstance(); ;
-			// Properties for user and password. Here the user and password are both 'paulr'
-			Properties p = new Properties();
-			p.put("user", "mada");
-			p.put("password", "madaroot");
-
-			// Now try to connect
-			  con = DriverManager.getConnection(CONNECTION, p);
-              Statement st = con.createStatement();
-              
-              PreparedStatement stm = con.prepareStatement("SELECT * FROM angajat where username=? and password=?");
-              stm.setString(1, request.getParameter("user"));
-              stm.setString(2, request.getParameter("password"));
-              
-              ResultSet rs = stm.executeQuery();
-              
-              if(rs.next()){
-                  session.setAttribute("errorMessage", "");
-                  response.sendRedirect("main.jsp");
-              }
-              else{
-                  session.setAttribute("errorMessage", "Datele introduse sunt incorecte");
-                  response.sendRedirect("index.jsp");               
-              }
-              
-            }
-            catch(Exception e)
-            {
-				e.printStackTrace(new java.io.PrintWriter(out));
-              out.println("Could not connect");
-            }
-        %>
-         
+    <div class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 loginform">
+				<form action="mainmysql.jsp" method="POST">
+                    <h1>Select DB:</h1><br>
+                    <h2><input type="radio" name="db" value="studenti">Studenti</h2><br>
+                    <h2><input type="radio" name="db" value="profesori">Profesori</h2><br>
+				<button type="submit" class="btn btn-secondary mb-2">OK</button>
+                </form>
+                </div>
+            </div>
+        </div>
         
     </body>
 </html>
