@@ -26,6 +26,14 @@ PRIMARY KEY (IdCurs),
 FOREIGN KEY (IdGrupa) REFERENCES GRUPE(IdGrupa)
 );
 
+create table ORAR(
+Ziua VARCHAR(25),
+IntervalOrar VARCHAR(25),
+IdCurs INT AUTO_INCREMENT NOT NULL,
+FOREIGN KEY (IdCurs),
+FOREIGN KEY (IdCurs) REFERENCES CURSURI(IdCurs);
+);
+
 insert into GRUPE (Grupa,Facultate,Specialitate) values
 ('111A','Inginerie Electrica','Electrotehnica'),
 ('411A','ETTI','Comunicatii'),
@@ -37,6 +45,11 @@ insert into STUDENTI (Nume, Prenume, AnNastere, CNP, IdGrupa) values
 ('Beniamin','Sandu',1990,'1920812892356',2),
 ('Marcel','Ghita',1990,'1930709892786',2),
 ('Felix','Stefan',1989,'1940812892341',2);
+
+insert into CURSURI (NumeCurs, Profesor, IdGrupa) values
+('PSBD','Tudorie',2),
+('AM','laixandru',1),
+('SOC','Anghel',3);
 
 insert into ORAR(Ziua, IntervalOrar, IdCurs) values
 ('Luni','10.00-12.00',1),
